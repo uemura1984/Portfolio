@@ -1,0 +1,474 @@
+@charset "UTF-8";
+
+header{
+	background: gray;
+	color: white;
+}
+
+h1 {
+	margin: 0;
+	float: left;
+}
+
+header p {
+	width: 100px;
+	margin: auto;
+}
+
+nav{
+	float: right;
+}
+
+nav ul{
+	margin: 0;
+}
+
+nav li{
+	float: right;
+	list-style:none;
+}
+.clearFix::after {
+	content:'aaaaaa';
+	clear: both;
+	display: block;
+	font-size: 0;
+	line-height: 0;	
+}
+
+main {
+	background: black;
+	padding-top: 30px;
+}
+
+#wrap {
+	width: 595px;
+	height: 842px;
+	margin: 0px auto;
+	background: white;
+	text-align: center;
+}
+
+h2{
+	padding-top: 50px;
+	
+}
+
+
+/*-------------------
+ここからCSSアニメーション
+---------------------*/
+
+/*背景のいろが変わる*/
+/*設定*/
+.background-color {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	height: 54px;
+	background: slategray;
+	text-align: center;
+	text-decoration: none;
+	line-height: 54px;
+	outline: none;
+}
+
+/*アニメーション設定*/
+.background-color {
+	animation-name: animation01;
+	animation-duration: 3s;
+	animation-timing-function: ease-in;
+	animation-delay: 1s;
+}
+
+
+
+@keyframes animation01 {
+	from {
+		left: 0;
+	}
+	20% {
+		left: 300px;
+	}
+	70% {
+		left: 300px;
+		background-color: #939;
+	}
+	to {
+		left: 600px;
+		background-color: #939;
+	}
+}
+
+
+
+/*アニメーション設定	
+animation-name: animation01;
+	アニメーションの名前を決める
+	キーフレームで動作の時にこの名前が必要
+	
+animation-duration: 3s;
+	一回にかかる時間を指定する
+	
+animation-timing-function: ease-in;
+	どのようなアニメーションをするか指定をする。
+	linear	一定
+	ease	開始と完了がなめらか
+	ease-in	ゆっくり始まる
+	ease-out	ゆっくり終わる
+	ease-in-out	ゆっくり始まりゆっくり終わる
+	
+animation-delay: 1s;
+	何秒後に開始するか
+	
+animation-iteration-count
+	アニメーションを何回繰り返すか指定する。
+	1：初期値
+	1.5：小数点も可
+	infinite：無限
+	
+animation-direction
+	アニメーションが終わった時に、反転アニメーションで最初の動作に戻るか指定する。
+	normal：初期値・アニメーションが終わると初期位置に戻る
+	alternate：逆方向も実行する
+	reverse：毎回逆方向を実行する
+	alternate-reverse：逆方向から実行して繰り返す
+	
+animation-fill-mode: both;
+	animation: animation01 3s ease-in 1s both; （まとめて指定する場合）
+	none アニメーションで指定されたスタイルは、アニメーションの実行前や実行後には適用されません。
+	forwards
+	アニメーションの適用先は、アニメーションの最後に適用されたキーフレームの指定によって計算された値を維持します。
+	これは通常、'100%' または 'to' キーフレームになります。ただし、animation-direction の値が 'alternate' で、
+	かつ animation-iteration-count に偶数が設定されている場合は '0%' または 'from' キーフレームになります。
+	
+	backwards
+	アニメーションの適用先に、'0%' または 'from'
+	 キーフレームで定義された値を即座に適用して、
+	animation-delay プロパティで指定した時間の間もその状態を維持します。
+	both
+	forwards と backwards の両方の規定に従います。
+	よって、アニメーションの設定は実行前と実行後の両方に適用されます。
+	*/
+
+/*-----------------
+ビフォー・アフター動的バックグラウンドＣＳＳ
+------------------*/
+/*基本設定*/
+.button {
+	display: inline-block;
+	width: 200px;
+	height: 54px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 54px;
+	outline: none;
+}
+.button::before,
+.button::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
+}
+.button,
+.button::before,
+.button::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+/*左右に*/
+
+.b1 {
+	position: relative;
+	z-index: 2;
+	background-color: #333;
+	border: 2px solid #333;
+	color: #fff;
+	line-height: 50px;
+}
+.b1:hover {
+	background-color: #fff;
+	border-color: #59b1eb;
+	color: #59b1eb;
+}
+.b1::before,
+.b1::after {
+	top: 0;
+	width: 50%;
+	height: 100%;
+	background-color: #333;
+}
+.b1::before {
+	right: 0;
+}
+.b1::after {
+	left: 0;
+}
+.b1:hover::before,
+.b1:hover::after {
+	width: 0;
+	background-color: #59b1eb;
+}
+
+
+/*上下に*/
+
+.b2 {
+	position: relative;
+	z-index: 2;
+	background-color: #333;
+	border: 2px solid #333;
+	color: #fff;
+	line-height: 50px;
+}
+.b2:hover {
+	background-color: #fff;
+	border-color: #59b1eb;
+	color: #59b1eb;
+}
+.b2::before,
+.b2::after {
+	left: 0;
+	width: 100%;
+	height: 50%;
+	background-color: #333;
+}
+.b2::before {
+	top: 0;
+}
+.b2::after {
+	bottom: 0;
+}
+.b2:hover::before,
+.b2:hover::after {
+	height: 0;
+	background-color: #59b1eb;
+}
+
+/*上から背景*/
+
+.b3 {
+	position: relative;
+	z-index: 2;
+	background-color: #fff;
+	border: 2px solid #333;
+	color: #333;
+	line-height: 50px;
+	overflow: hidden;
+}
+.b3:hover {
+	color: #fff;
+}
+.b3::after {
+	top: -100%;
+	width: 100%;
+	height: 100%;
+}
+.b3:hover::after {
+	top: 0;
+	background-color: #333;
+}
+
+/*左上から背景*/
+.b4 {
+	position: relative;
+	z-index: 2;
+	background-color: #fff;
+	border: 2px solid #333;
+	color: #333;
+	line-height: 50px;
+	overflow: hidden;
+}
+.b4:hover {
+	color: #fff;
+}
+.b4::after {
+	top: -100%;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+}
+.b4:hover::after {
+	top: 0;
+	left: 0;
+	background-color: #333;
+}
+
+
+/*奥からふわっと*/
+
+.b5 {
+	position: relative;
+	z-index: 2;
+	background-color: #fff;
+	border: 2px solid #333;
+	color: #333;
+	line-height: 50px;
+	overflow: hidden;
+}
+.b5:hover {
+	color: #fff;
+}
+.b5::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transform: scale(.5);
+	transform: scale(.5);
+}
+.b5:hover::after {
+	background: #333;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+/*奥からふわっと２*/
+
+.b6 {
+	position: relative;
+	z-index: 2;
+	background-color: #fff;
+	border: 2px solid #333;
+	color: #333;
+	line-height: 50px;
+	overflow: hidden;
+}
+.b6:hover {
+	color: #fff;
+}
+.b6::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.b6:hover::after {
+	-webkit-transform: scale(2) rotate(180deg);
+	transform: scale(2) rotate(180deg);
+	background: #333;
+}
+
+/*上からパタ*/
+
+.b7 {
+	position: relative;
+	z-index: 2;
+	border: 2px solid #333;
+	color: #333;
+	line-height: 50px;
+	-webkit-perspective: 300px;
+	perspective: 300px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.b7:hover {
+	color: #fff;
+}
+.b7::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #333;
+	-webkit-transform-origin: center top;
+	transform-origin: center top;
+	-webkit-transform: rotateX(90deg);
+	transform: rotateX(90deg);
+	opacity: 0;
+}
+.b7:hover::after {
+	-webkit-transform: rotateX(0);
+	transform: rotateX(0);
+	opacity: 1;
+}
+
+
+/*パタッと開く*/
+
+.b8 {
+	position: relative;
+	z-index: 2;
+	border: 2px solid #333;
+	color: #fff;
+	line-height: 50px;
+	-webkit-perspective: 300px;
+	perspective: 300px;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+.b8:hover {
+	color: #333;
+}
+.b8::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #333;
+	-webkit-transform-origin: center bottom;
+	transform-origin: center bottom;
+	-webkit-transform: rotateX(0);
+	transform: rotateX(0);
+}
+.b8:hover::after {
+	-webkit-transform: rotateX(-180deg);
+	transform: rotateX(-180deg);
+}
+
+/*くるっと回転*/
+
+.b9 {
+	position: relative;
+	-webkit-perspective: 300px;
+	perspective: 300px;
+}
+.b9 span {
+	display: block;
+	position: absolute;
+	width: 200px;
+	height: 60px;
+	border: 2px solid #333;
+	text-align: center;
+	line-height: 56px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	pointer-events: none;
+}
+.b9 span:nth-child(1) {
+	background-color: #333;
+	color: #fff;
+	-webkit-transform: rotateX(90deg);
+	-moz-transform: rotateX(90deg);
+	transform: rotateX(90deg);
+	-webkit-transform-origin: 50% 50% -30px;
+	-moz-transform-origin: 50% 50% -30px;
+	transform-origin: 50% 50% -30px;
+}
+.b9 span:nth-child(2) {
+	background-color: #fff;
+	color: #333;
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+	-webkit-transform-origin: 50% 50% -30px;
+	-moz-transform-origin: 50% 50% -30px;
+	transform-origin: 50% 50% -30px;
+}
+.b9:hover span:nth-child(1) {
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+}
+.b9:hover span:nth-child(2) {
+	background-color: #333;
+	-webkit-transform: rotateX(-90deg);
+	-moz-transform: rotateX(-90deg);
+	transform: rotateX(-90deg);
+}
